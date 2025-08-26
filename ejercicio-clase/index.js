@@ -36,3 +36,42 @@ console.dir({
     checkboxForm,
     submitForm
 });
+
+function activarMensaje() {
+    console.log('Botón presionado!!')
+}
+
+changeTextBtn.addEventListener('click', () => {
+    const textElement = document.querySelector('.text')
+    textElement.textContent = 'Holi mundo cruel'
+    textElement.setAttribute('style', 'color: red')
+}); //tenemos 2 propiedades, el evento que escucha y la función que debe de ejecutar cuando el evento ocurra. 
+
+addElementBtn.addEventListener('click', () => {
+    const newItem = document.createElement('li')
+    newItem.className = 'item'
+    console.dir(itemList.children.length)
+    newItem.textContent = `Item ${itemList.children.length + 1}`
+    itemList.appendChild(newItem);
+    itemList.scrollTo(0, itemList.scrollHeight) //mantiene el scroll siempre en la parte de abajo:p
+})
+
+//toggle class
+
+let darkMode = true
+
+toggleClassBtn.addEventListener('click', () => {
+    content.classList.toggle('highlight') //sirve para poner o quitar un estilo cuando presionamos un btn.
+    const container = document.getElementById('container')
+    container.style = `background-color: ${darkMode ? 'black' : 'white'}`;
+    darkMode = !darkMode
+})
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); //previene de hacer la actualización de la pagina 
+    console.log('Formulario enviado')
+    const inputText = inputField.value
+    const  isChecked = myCheckbox.value
+    alert(`Mensaje ingresado: ${inputText} Verificó? ${isChecked ? 'Si' : 'No'}`);
+    form.reset(); // limpia los campos del formulario
+})
